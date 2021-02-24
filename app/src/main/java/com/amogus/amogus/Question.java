@@ -5,14 +5,15 @@ import android.os.Parcelable;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Question implements Parcelable {
     private String level;
     private String question;
     private int imageId;
-    private ArrayList answers;
+    private String[] answers;
 
-    public Question(String level, String question, ImageView image, ArrayList answers) {
+    public Question(String level, String question, int imageId, String[] answers) {
         this.level = level;
         this.question = question;
         this.imageId = imageId;
@@ -61,12 +62,12 @@ public class Question implements Parcelable {
         return imageId;
     }
 
-    public ArrayList getAnswers() {
+    public String[] getAnswers() {
         return answers;
     }
 
     public String getRightAnswer() {
-        return (String) answers.get(0);
+        return answers[0];
     }
 
     @Override

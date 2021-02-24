@@ -34,7 +34,8 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         holder.questionImage.setImageResource(question.getImageId());
         holder.level.setText(question.getLevel());
         holder.question.setText(question.getQuestion());
-        holder.answers.setText(question.getAnswers() + "");
+
+        holder.answers.setText(String.join(", ", question.getAnswers()));
 
     }
 

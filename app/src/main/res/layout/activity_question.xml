@@ -18,53 +18,59 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/questionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintTop_toBottomOf="@+id/questionImageView"
         tools:text="Nunc faucibus eu nunc vitae malesuada ?" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="32dp"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/ic_launcher_background" />
-
     <RadioButton
-        android:id="@+id/radioButton"
+        android:id="@+id/answerRadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:text="RadioButton"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/questionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
 
-    <ImageView
-        android:id="@+id/expandedPictureImageView"
+    <RadioButton
+        android:id="@+id/answerRadioButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:alpha="1"
+        android:text="RadioButton"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/questionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/answerRadioButton" />
+
+    <RadioButton
+        android:id="@+id/answerRadioButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RadioButton"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/questionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/answerRadioButton2" />
+
+    <ImageView
+        android:id="@+id/questionImageView"
+        android:layout_width="0dp"
+        android:layout_height="168dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.518"
-        tools:srcCompat="@drawable/ic_launcher_background"
-        tools:visibility="visible" />
+        app:srcCompat="@drawable/crewmate_red" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

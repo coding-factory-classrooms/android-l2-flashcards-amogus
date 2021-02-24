@@ -3,6 +3,7 @@ package com.amogus.amogus;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,22 +25,15 @@ public class QuestionActivity extends AppCompatActivity {
 
         // Hook up clicks on the thumbnail views.
 
-        View imageButton = findViewById(R.id.imageButton);
-        View largeImageButton = findViewById(R.id.expandedPictureImageView);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        View questionImageView = findViewById(R.id.questionImageView);
+        questionImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("QuestionActivity","image click");
-                Log.i("QuestionActivity", String.valueOf(largeImageButton.getVisibility()));
 
-                largeImageButton.clearAnimation();
-                if (largeImageButton.getVisibility() == View.INVISIBLE) {
-                    largeImageButton.setVisibility(View.VISIBLE);
-                    largeImageButton.bringToFront();
-                } else {
-                    largeImageButton.setVisibility(View.INVISIBLE);
-
-                }
+                Intent showPictureIntent = new Intent(QuestionActivity.this, ShowPictureActivity.class);
+                showPictureIntent.putExtra("image",R.drawable.crewmate_red); // TO DO : replace this with ID of question picture
+                startActivity(showPictureIntent);
 
             }
         });

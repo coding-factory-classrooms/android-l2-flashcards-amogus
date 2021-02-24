@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Question implements Parcelable {
@@ -76,7 +77,7 @@ public class Question implements Parcelable {
                 "level='" + level + '\'' +
                 ", question='" + question + '\'' +
                 ", imageId=" + imageId +
-                ", answers=" + answers +
+                ", answers=" + Arrays.toString(answers) +
                 '}';
     }
 }

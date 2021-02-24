@@ -32,7 +32,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question question = questions.get(position);
         holder.questionImage.setImageResource(question.getImageId());
-        holder.level.setText(question.getLevel());
+        holder.level.setText(question.getLevel()+"");
         holder.question.setText(question.getQuestion());
 
         holder.answers.setText(String.join(", ", question.getAnswers()));

@@ -19,6 +19,8 @@ public class QuestionsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions_list);
 
+        new QuestionList(0,4);
+
         questions = new ArrayList<>();
 
         for (int i = 0; i < 20; i++) {

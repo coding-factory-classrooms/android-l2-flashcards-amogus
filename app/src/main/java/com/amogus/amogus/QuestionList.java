@@ -1,27 +1,30 @@
 package com.amogus.amogus;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionList {
     private int level;
-    private ArrayList questions;
-    private Question question;
+    private int questionsNumbers;
+    private List<Question> questionsList;
+    private List<Question> easyQuestions;
 
-    public QuestionList(int level, ArrayList questions, Question question) {
+    public QuestionList(int level, int questionsNumbers) {
         this.level = level;
-        this.questions = questions;
-        this.question = question;
+        this.questionsNumbers = questionsNumbers;
     }
+
+
 
     public int getLevel() {
         return level;
     }
 
-    public ArrayList getQuestions() {
-        return questions;
+    public int getQuestionsNumbers() {
+        return questionsNumbers;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
+
+
+
 }

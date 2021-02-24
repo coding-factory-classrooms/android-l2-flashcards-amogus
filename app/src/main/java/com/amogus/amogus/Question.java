@@ -68,4 +68,14 @@ public class Question implements Parcelable {
     public String getRightAnswer() {
         return (String) answers.get(0);
     }
+
+    @Override
+    public String toString() {
+        return "Question{" +
+                "level='" + level + '\'' +
+                ", question='" + question + '\'' +
+                ", imageId=" + imageId +
+                ", answers=" + answers +
+                '}';
+    }
 }

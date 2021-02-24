@@ -3,17 +3,17 @@ package com.amogus.amogus;
 import java.util.ArrayList;
 
 public class QuestionList {
-    private String level;
+    private int level;
     private ArrayList questions;
     private Question question;
 
-    public QuestionList(String level, ArrayList questions, Question question) {
+    public QuestionList(int level, ArrayList questions, Question question) {
         this.level = level;
         this.questions = questions;
         this.question = question;
     }
 
-    public String getLevel() {
+    public int getLevel() {
         return level;
     }
 

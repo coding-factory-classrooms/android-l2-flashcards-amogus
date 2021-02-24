@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Question implements Parcelable {
-    private String level;
+    private int level;
     private String question;
     private int imageId;
     private String[] answers;
 
-    public Question(String level, String question, int imageId, String[] answers) {
+    public Question(int level, String question, int imageId, String[] answers) {
         this.level = level;
         this.question = question;
         this.imageId = imageId;
@@ -22,14 +22,14 @@ public class Question implements Parcelable {
 
     protected Question(Parcel in) {
         imageId = in.readInt();
-        level = in.readString();
+        level = in.readInt();
         question = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(imageId);
-        dest.writeString(level);
+        dest.writeInt(level);
         dest.writeString(question);
     }
 
@@ -50,7 +50,7 @@ public class Question implements Parcelable {
         }
     };
 
-    public String getLevel() {
+    public int getLevel() {
         return level;
     }
 

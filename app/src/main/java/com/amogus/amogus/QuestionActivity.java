@@ -35,6 +35,8 @@ public class QuestionActivity extends AppCompatActivity {
                 showPictureIntent.putExtra("image",R.drawable.crewmate_red); // TO DO : replace this with ID of question picture
                 startActivity(showPictureIntent);
 
+                // finish(); To finish current activity
+
             }
         });
 

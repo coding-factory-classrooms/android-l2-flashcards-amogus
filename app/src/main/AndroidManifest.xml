@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Amogus">
+
         <activity android:name=".ShowPictureActivity"></activity>
         <activity android:name=".QuestionActivity"></activity>
         <activity android:name=".QuestionsListActivity"></activity>
@@ -20,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".StatsActivity"></activity>
+
     </application>
 
 </manifest>

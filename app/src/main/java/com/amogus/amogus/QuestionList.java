@@ -1,5 +1,7 @@
 package com.amogus.amogus;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class QuestionList {
+public class QuestionList implements Parcelable{
     private int level;
     private int questionsNumbers;
     private ArrayList<Question> questionsList;
@@ -80,6 +82,27 @@ public class QuestionList {
         this.questionsList = questionsList;
     }
 
+    protected QuestionList(Parcel in) {
+        level = in.readInt();
+        questionsNumbers = in.readInt();
+        questionsList = in.createTypedArrayList(Question.CREATOR);
+        easyQuestions = in.createTypedArrayList(Question.CREATOR);
+        normalQuestions = in.createTypedArrayList(Question.CREATOR);
+        hardQuestions = in.createTypedArrayList(Question.CREATOR);
+    }
+
+    public static final Creator<QuestionList> CREATOR = new Creator<QuestionList>() {
+        @Override
+        public QuestionList createFromParcel(Parcel in) {
+            return new QuestionList(in);
+        }
+
+        @Override
+        public QuestionList[] newArray(int size) {
+            return new QuestionList[size];
+        }
+    };
+
     public int getLevel() {
         return level;
     }
@@ -90,5 +113,20 @@ public class QuestionList {
 
     public Question getQuestion(int position) {
         return questionsList.get(position);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(level);
+        dest.writeInt(questionsNumbers);
+        dest.writeTypedList(questionsList);
+        dest.writeTypedList(easyQuestions);
+        dest.writeTypedList(normalQuestions);
+        dest.writeTypedList(hardQuestions);
     }
 }

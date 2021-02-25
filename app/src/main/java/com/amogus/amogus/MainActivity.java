@@ -12,26 +12,24 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    private AlertDialog alert;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.alert.dismiss();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button startButton  = findViewById(R.id.startButton);
+        Button startButton = findViewById(R.id.startButton);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                QuestionList questions = new QuestionList(-1, 15,false);
-
-
-                Intent listIntent = new Intent(MainActivity.this, QuestionActivity.class);
-                listIntent.putExtra("questions",questions);
-                listIntent.putExtra("currentQuestion",14);
-                startActivity(listIntent);
-
-                // showDifficultyDialog();
+                showDifficultyDialog();
             }
         });
 
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button aboutButton  = findViewById(R.id.aboutButton);
+        Button aboutButton = findViewById(R.id.aboutButton);
         aboutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,26 +56,38 @@ public class MainActivity extends AppCompatActivity {
     private void showDifficultyDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Choisissez votre difficulté");
-        String[] items = {"Facile","Normal","Difficile"};
+        String[] items = {"Facile", "Normal", "Difficile"};
         int checkedItem = 1;
         alertDialog.setSingleChoiceItems(items, checkedItem, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                QuestionList questions;
+
                 switch (which) {
                     case 0:
-                        Toast.makeText(MainActivity.this, "Clicked on facile", Toast.LENGTH_LONG).show();
+                        questions = new QuestionList(0, 3, true);
                         break;
                     case 1:
-                        Toast.makeText(MainActivity.this, "Clicked on normal", Toast.LENGTH_LONG).show();
+                        questions = new QuestionList(1, 3, true);
                         break;
                     case 2:
-                        Toast.makeText(MainActivity.this, "Clicked on difficile", Toast.LENGTH_LONG).show();
+                        questions = new QuestionList(2, 4, true);
                         break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + which);
                 }
+
+                Intent listIntent = new Intent(MainActivity.this, QuestionActivity.class);
+                listIntent.putExtra("questions", questions);
+                listIntent.putExtra("currentQuestion", 0);
+                listIntent.putExtra("goodAnswers", 0);
+                startActivity(listIntent);
+                finish();
             }
         });
-        AlertDialog alert = alertDialog.create();
+        alert = alertDialog.create();
         alert.setCanceledOnTouchOutside(true);
         alert.show();
+
     }
 }

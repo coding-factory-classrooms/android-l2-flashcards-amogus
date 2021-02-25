@@ -4,17 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class QuestionList implements Parcelable{
+public class QuestionList implements Parcelable {
     private int level;
     private int questionsNumbers;
     private ArrayList<Question> questionsList;
-    private ArrayList<Boolean> resultsList;
 
     // Used to create questions lists
     private ArrayList<Question> easyQuestions = new ArrayList<>(Arrays.asList(

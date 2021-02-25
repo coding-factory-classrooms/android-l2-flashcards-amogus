@@ -19,10 +19,8 @@
 
     <TextView
         android:id="@+id/questionTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -30,7 +28,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/questionImageView"
+        app:layout_constraintStart_toStartOf="@+id/questionImageView"
         app:layout_constraintTop_toBottomOf="@+id/questionImageView"
         tools:text="Nunc faucibus eu nunc vitae malesuada ?" />
 
@@ -51,7 +50,7 @@
     <RadioGroup
         android:id="@+id/answersRadioGroup"
         android:layout_width="0dp"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="@+id/questionImageView"
         app:layout_constraintStart_toStartOf="@+id/questionImageView"
@@ -75,8 +74,12 @@
 
     <TextView
         android:id="@+id/infoTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:visibility="invisible"

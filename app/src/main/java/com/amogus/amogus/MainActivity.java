@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
                 QuestionList questions = new QuestionList(-1, 15,false);
 
 
-                Intent listIntent = new Intent(MainActivity.this, QuestionsListActivity.class);
+                Intent listIntent = new Intent(MainActivity.this, QuestionActivity.class);
                 listIntent.putExtra("questions",questions);
-                listIntent.putExtra("currentQuestion",0);
+                listIntent.putExtra("currentQuestion",1);
                 startActivity(listIntent);
 
                 // showDifficultyDialog();

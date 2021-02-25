@@ -74,16 +74,21 @@ public class QuestionActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int goodAnswers = srcIntent.getIntExtra("goodAnswers", 0);
+                int goodAnswers = questionList.getGoodAnswers();
+
                 // get current selected option IF SELECTED, ELSE RETURN
                 int radioButtonID = answersRadioGroup.getCheckedRadioButtonId();
 
                 if (actionButton.getText() == "Question suivante") {
-                    if (currentQuestionId + 1 == questionList.getQuestionsNumbers()) {
-                        Intent listIntent = new Intent(QuestionActivity.this, StatsActivity.class);
-                        startActivity(listIntent);
+                    if (currentQuestionId + 1 == questionList.getQuestionsNumbers()) { // If we're at the last question
+                        Intent statsIntent = new Intent(QuestionActivity.this, StatsActivity.class);
+                        statsIntent.putExtra("questions", questionList);
+                        statsIntent.putExtra("goodAnswers", goodAnswers);
+                        startActivity(statsIntent);
                         finish();
-                    } else {
+                    } else { // Go to next question
+                        Log.i("QuestionActivity", "Good Answers : " + goodAnswers);
+
                         Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
                         listIntent.putExtra("questions", questionList);
                         listIntent.putExtra("currentQuestion", currentQuestionId + 1);
@@ -92,12 +97,7 @@ public class QuestionActivity extends AppCompatActivity {
                         finish();
                     }
 
-                } else if (radioButtonID > -1) {
-                    Log.i("QuestionActivity", "radioButtonID = " + radioButtonID + " (fixed) " + (radioButtonID - 1));
-
-                    //Log.i("QuestionActivity", "selected answer " + radioButtonID + " = " + shuffledQuestionAnswers[radioButtonID - 1]);
-                    Log.i("QuestionActivity", Arrays.toString(shuffledQuestionAnswers));
-
+                } else if (radioButtonID > -1) { // If an option has been selected
                     // Get selected radioButton and grab text
                     RadioButton selectedRadioButton = (RadioButton) answersRadioGroup.findViewById(radioButtonID);
                     String selectedAnswer = (String) selectedRadioButton.getText();
@@ -115,8 +115,7 @@ public class QuestionActivity extends AppCompatActivity {
                     if (selectedAnswer == correctAnswer) {
                         Log.i("QuestionActivity", selectedAnswer + " == " + correctAnswer + " - good!");
                         feedbackTextView.setText("Bonne réponse ! 👏");
-                        goodAnswers++;
-
+                        questionList.addGoodAnswer();
                     } else if (!(selectedAnswer == correctAnswer)) {
                         Log.i("QuestionActivity", selectedAnswer + " != " + correctAnswer + " - bad.");
                         feedbackTextView.setText("Mauvaise réponse... ❌");
@@ -137,7 +136,6 @@ public class QuestionActivity extends AppCompatActivity {
                 Intent showPictureIntent = new Intent(QuestionActivity.this, ShowPictureActivity.class);
                 showPictureIntent.putExtra("image", currentQuestion.getImageId());
                 startActivity(showPictureIntent);
-                // finish(); To finish current activity
             }
         });
 

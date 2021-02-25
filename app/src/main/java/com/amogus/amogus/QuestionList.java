@@ -14,6 +14,7 @@ import java.util.Random;
 public class QuestionList implements Parcelable {
     private int level;
     private int questionsNumbers;
+    private int goodAnswers;
     private ArrayList<Question> questionsList;
 
     // Used to create questions lists
@@ -44,6 +45,7 @@ public class QuestionList implements Parcelable {
     public QuestionList(int level, int questionsNumbers, boolean isRandom) {
         this.level = level;
         this.questionsNumbers = questionsNumbers;
+        this.goodAnswers = 0;
 
         Random rand = new Random();
 
@@ -85,10 +87,27 @@ public class QuestionList implements Parcelable {
     protected QuestionList(Parcel in) {
         level = in.readInt();
         questionsNumbers = in.readInt();
+        goodAnswers = in.readInt();
         questionsList = in.createTypedArrayList(Question.CREATOR);
         easyQuestions = in.createTypedArrayList(Question.CREATOR);
         normalQuestions = in.createTypedArrayList(Question.CREATOR);
         hardQuestions = in.createTypedArrayList(Question.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(level);
+        dest.writeInt(questionsNumbers);
+        dest.writeInt(goodAnswers);
+        dest.writeTypedList(questionsList);
+        dest.writeTypedList(easyQuestions);
+        dest.writeTypedList(normalQuestions);
+        dest.writeTypedList(hardQuestions);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<QuestionList> CREATOR = new Creator<QuestionList>() {
@@ -115,18 +134,11 @@ public class QuestionList implements Parcelable {
         return questionsList.get(position);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public int getGoodAnswers() {
+        return goodAnswers;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(level);
-        dest.writeInt(questionsNumbers);
-        dest.writeTypedList(questionsList);
-        dest.writeTypedList(easyQuestions);
-        dest.writeTypedList(normalQuestions);
-        dest.writeTypedList(hardQuestions);
+    public void addGoodAnswer() {
+        this.goodAnswers++;
     }
 }

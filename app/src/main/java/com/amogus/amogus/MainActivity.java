@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent listIntent = new Intent(MainActivity.this, QuestionActivity.class);
                 listIntent.putExtra("questions", questions);
                 listIntent.putExtra("currentQuestion", 0);
-                listIntent.putExtra("goodAnswers", 0);
+                //listIntent.putExtra("goodAnswers", 0);
                 startActivity(listIntent);
                 finish();
             }

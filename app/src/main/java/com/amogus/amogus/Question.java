@@ -22,16 +22,18 @@ public class Question implements Parcelable {
     }
 
     protected Question(Parcel in) {
-        imageId = in.readInt();
         level = in.readInt();
         question = in.readString();
+        imageId = in.readInt();
+        answers = in.createStringArray();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(imageId);
         dest.writeInt(level);
         dest.writeString(question);
+        dest.writeInt(imageId);
+        dest.writeStringArray(answers);
     }
 
     @Override

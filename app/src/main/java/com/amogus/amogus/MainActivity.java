@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent listIntent = new Intent(MainActivity.this, QuestionActivity.class);
                 listIntent.putExtra("questions",questions);
-                listIntent.putExtra("currentQuestion",1);
+                listIntent.putExtra("currentQuestion",14);
                 startActivity(listIntent);
 
                 // showDifficultyDialog();

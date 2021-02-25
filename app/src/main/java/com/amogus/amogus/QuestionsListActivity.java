@@ -19,8 +19,6 @@ public class QuestionsListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions_list);
 
-
-
         questions = new QuestionList(-1, 15,false);
 
         adapter = new QuestionAdapter(questions);

@@ -25,44 +25,19 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:text="TextView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/red_200"
+        android:textSize="18sp"
+        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/questionImageView"
         tools:text="Nunc faucibus eu nunc vitae malesuada ?" />
 
-    <RadioButton
-        android:id="@+id/answerRadioButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
-        android:text="RadioButton"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/questionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
-
-    <RadioButton
-        android:id="@+id/answerRadioButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/questionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/answerRadioButton" />
-
-    <RadioButton
-        android:id="@+id/answerRadioButton3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="RadioButton"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="@+id/questionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/answerRadioButton2" />
-
     <ImageView
         android:id="@+id/questionImageView"
         android:layout_width="0dp"
-        android:layout_height="168dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
@@ -72,5 +47,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/crewmate_red" />
+
+    <RadioGroup
+        android:id="@+id/answersRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/questionImageView"
+        app:layout_constraintStart_toStartOf="@+id/questionImageView"
+        app:layout_constraintTop_toBottomOf="@+id/questionTextView" />
+
+    <TextView
+        android:id="@+id/feedbackTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/infoTextView"
+        app:layout_constraintEnd_toEndOf="@+id/questionImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/questionImageView"
+        app:layout_constraintTop_toBottomOf="@+id/answersRadioGroup"
+        tools:text="Bonne réponse !"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/infoTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/actionButton"
+        app:layout_constraintEnd_toEndOf="@+id/questionImageView"
+        app:layout_constraintStart_toStartOf="@+id/questionImageView"
+        app:layout_constraintTop_toBottomOf="@+id/feedbackTextView"
+        tools:text='La bonne réponse était "Amogus".'
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,23 +9,16 @@ import android.util.Log;
 import android.view.View;
 
 public class QuestionActivity extends AppCompatActivity {
-    // Hold a reference to the current animator,
-    // so that it can be canceled mid-way.
-    private Animator currentAnimator;
-
-    // The system "short" animation time duration, in milliseconds. This
-    // duration is ideal for subtle animations or animations that occur
-    // very frequently.
-    private int shortAnimationDuration;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
-        // Hook up clicks on the thumbnail views.
-
         View questionImageView = findViewById(R.id.questionImageView);
+
+
+
+
         questionImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,9 +33,6 @@ public class QuestionActivity extends AppCompatActivity {
             }
         });
 
-        // Retrieve and cache the system's default "short" animation time.
-        shortAnimationDuration = getResources().getInteger(
-                android.R.integer.config_shortAnimTime);
     }
 
 }

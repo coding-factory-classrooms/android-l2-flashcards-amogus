@@ -13,9 +13,9 @@ import java.util.List;
 
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder> {
 
-    private List<Question> questions;
+    private QuestionList questions;
 
-    public QuestionAdapter(List<Question> questions) {
+    public QuestionAdapter(QuestionList questions) {
         this.questions = questions;
     }
 
@@ -30,18 +30,33 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Question question = questions.get(position);
+        Question question = questions.getQuestion(position);
         holder.questionImage.setImageResource(question.getImageId());
-        holder.level.setText(question.getLevel()+"");
         holder.question.setText(question.getQuestion());
-
+        // Ignore warning
         holder.answers.setText(String.join(", ", question.getAnswers()));
+        switch (question.getLevel()) {
+            case 0:
+                holder.level.setText("Facile");
+                break;
+            case 1:
+                holder.level.setText("Normal");
+                break;
+            case 2:
+                holder.level.setText("Difficile");
+                break;
+            default:
+                holder.level.setText("Inconnu");
+                break;
+        }
+
+
 
     }
 
     @Override
     public int getItemCount() {
-        return questions.size();
+        return questions.getQuestionsNumbers();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

@@ -30,7 +30,10 @@ public class QuestionActivity extends AppCompatActivity {
         Intent srcIntent = getIntent();
         QuestionList questionList = srcIntent.getParcelableExtra("questions");
         int currentQuestionId = srcIntent.getIntExtra("currentQuestion", 0);
-        Log.i("QuestionActivity","Current Question ID : " + currentQuestionId);
+        int questionsNumbers = questionList.getQuestionsNumbers();
+        Log.i("QuestionActivity", "Current Question ID : " + currentQuestionId);
+        setTitle("Amogus - Question " + (currentQuestionId + 1) + " sur " + questionsNumbers);
+
 
         Question currentQuestion = questionList.getQuestion(currentQuestionId);
 
@@ -76,20 +79,21 @@ public class QuestionActivity extends AppCompatActivity {
                 int radioButtonID = answersRadioGroup.getCheckedRadioButtonId();
 
                 if (actionButton.getText() == "Question suivante") {
-                    if (currentQuestionId +1 == questionList.getQuestionsNumbers() ) {
+                    if (currentQuestionId + 1 == questionList.getQuestionsNumbers()) {
                         Intent listIntent = new Intent(QuestionActivity.this, StatsActivity.class);
                         startActivity(listIntent);
                         finish();
+                    } else {
+                        Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
+                        listIntent.putExtra("questions", questionList);
+                        listIntent.putExtra("currentQuestion", currentQuestionId + 1);
+                        listIntent.putExtra("goodAnswers", goodAnswers);
+                        startActivity(listIntent);
+                        finish();
                     }
-                    Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
-                    listIntent.putExtra("questions", questionList);
-                    listIntent.putExtra("currentQuestion", currentQuestionId + 1);
-                    listIntent.putExtra("goodAnswers", goodAnswers);
-                    startActivity(listIntent);
-                    finish();
-                }
-                else if (radioButtonID > -1) {
-                    Log.i("QuestionActivity","radioButtonID = " + radioButtonID + " (fixed) " + (radioButtonID - 1));
+
+                } else if (radioButtonID > -1) {
+                    Log.i("QuestionActivity", "radioButtonID = " + radioButtonID + " (fixed) " + (radioButtonID - 1));
 
                     //Log.i("QuestionActivity", "selected answer " + radioButtonID + " = " + shuffledQuestionAnswers[radioButtonID - 1]);
                     Log.i("QuestionActivity", Arrays.toString(shuffledQuestionAnswers));

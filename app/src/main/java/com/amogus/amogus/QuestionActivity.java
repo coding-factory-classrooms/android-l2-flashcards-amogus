@@ -69,9 +69,9 @@ public class QuestionActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int goodAnswers = srcIntent.getIntExtra("goodAnswers", 0);
                 // get current selected option IF SELECTED, ELSE RETURN
                 int radioButtonID = answersRadioGroup.getCheckedRadioButtonId();
-                int goodAnswers = srcIntent.getIntExtra("goodAnswers", 0);
 
                 if (actionButton.getText() == "Question suivante") {
                     Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
@@ -81,20 +81,25 @@ public class QuestionActivity extends AppCompatActivity {
                     startActivity(listIntent);
                     finish();
                 } else if (radioButtonID > -1) {
+                    Log.i("QuestionActivity","radioButtonID = " + radioButtonID + " (fixed) " + (radioButtonID - 1));
 
-                    Log.i("QuestionActivity", "selected answer " + radioButtonID + " = " + shuffledQuestionAnswers[radioButtonID - 1]);
-                    String selectedAnswer = shuffledQuestionAnswers[radioButtonID - 1];
-                    // -1 because RadioButtons answers start at 1 instead of 0
+                    //Log.i("QuestionActivity", "selected answer " + radioButtonID + " = " + shuffledQuestionAnswers[radioButtonID - 1]);
+                    Log.i("QuestionActivity", Arrays.toString(shuffledQuestionAnswers));
+
+                    // Get selected radioButton and grab text
+                    RadioButton selectedRadioButton = (RadioButton) answersRadioGroup.findViewById(radioButtonID);
+                    String selectedAnswer = (String) selectedRadioButton.getText();
 
                     // lock the radio buttons + user feedback
                     for (int i = 0; i < answersRadioGroup.getChildCount(); i++) {
                         answersRadioGroup.getChildAt(i).setEnabled(false);
                     }
 
+                    // set user feedback text to visible
                     feedbackTextView.setVisibility(View.VISIBLE);
                     infoTextView.setVisibility(View.VISIBLE);
 
-                    // compare the two
+                    // compare the two strings
                     if (selectedAnswer == correctAnswer) {
                         Log.i("QuestionActivity", selectedAnswer + " == " + correctAnswer + " - good!");
                         feedbackTextView.setText("Bonne réponse ! 👏");

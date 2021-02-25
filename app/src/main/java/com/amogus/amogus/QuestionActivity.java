@@ -30,6 +30,8 @@ public class QuestionActivity extends AppCompatActivity {
         Intent srcIntent = getIntent();
         QuestionList questionList = srcIntent.getParcelableExtra("questions");
         int currentQuestionId = srcIntent.getIntExtra("currentQuestion", 0);
+        Log.i("QuestionActivity","Current Question ID : " + currentQuestionId);
+
         Question currentQuestion = questionList.getQuestion(currentQuestionId);
 
         // get correct answer from question
@@ -74,13 +76,19 @@ public class QuestionActivity extends AppCompatActivity {
                 int radioButtonID = answersRadioGroup.getCheckedRadioButtonId();
 
                 if (actionButton.getText() == "Question suivante") {
+                    if (currentQuestionId +1 == questionList.getQuestionsNumbers() ) {
+                        Intent listIntent = new Intent(QuestionActivity.this, StatsActivity.class);
+                        startActivity(listIntent);
+                        finish();
+                    }
                     Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
                     listIntent.putExtra("questions", questionList);
                     listIntent.putExtra("currentQuestion", currentQuestionId + 1);
                     listIntent.putExtra("goodAnswers", goodAnswers);
                     startActivity(listIntent);
                     finish();
-                } else if (radioButtonID > -1) {
+                }
+                else if (radioButtonID > -1) {
                     Log.i("QuestionActivity","radioButtonID = " + radioButtonID + " (fixed) " + (radioButtonID - 1));
 
                     //Log.i("QuestionActivity", "selected answer " + radioButtonID + " = " + shuffledQuestionAnswers[radioButtonID - 1]);

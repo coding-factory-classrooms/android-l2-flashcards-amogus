@@ -22,6 +22,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button questionsList = findViewById(R.id.listButton);
+        questionsList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent listIntent = new Intent(MainActivity.this, QuestionsListActivity.class);
+                startActivity(listIntent);
+            }
+        });
+
 
         Button aboutButton  = findViewById(R.id.aboutButton);
         aboutButton.setOnClickListener(new View.OnClickListener() {

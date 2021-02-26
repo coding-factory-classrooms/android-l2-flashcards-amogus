@@ -37,7 +37,7 @@ public class StatsActivity extends AppCompatActivity {
                 levelSuccessTextView.setText("Difficile");
                 break;
             default:
-                levelSuccessTextView.setText("Iconnu");
+                levelSuccessTextView.setText("Inconnu");
                 break;
         }
 

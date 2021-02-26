@@ -7,6 +7,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
+/**
+ * Question list class. Get questions list according to level.
+ */
 
 public class QuestionList implements Parcelable {
     private int level;
@@ -14,6 +17,10 @@ public class QuestionList implements Parcelable {
     private int goodAnswers;
     private ArrayList<Question> questionsList;
 
+
+    /**
+     * Creation of the questions list according to level.
+     */
     // Used to create questions lists
     private ArrayList<Question> easyQuestions = new ArrayList<>(Arrays.asList(
             new Question(0, "Quelle est la date de sortie du jeu Among Us ?", R.drawable.q_0_0, new String[]{"15 juin 2018", "25 septembre 2018", "15 décembre 2020"}),
@@ -39,6 +46,12 @@ public class QuestionList implements Parcelable {
             new Question(2, "Au 1er février 2021, combien de personnes travaillent-elles sur le jeu ?",  R.drawable.q_2_4, new String[]{"5", "3", "6", "1", "8"})
     ));
 
+    /**
+     * Creates an question list.
+     * @param level the difficulty of the list
+     * @param questionsNumbers the total number of questions inside the list
+     * @param isRandom if the suggested answers are random or not.
+     */
     public QuestionList(int level, int questionsNumbers, boolean isRandom) {
         this.level = level;
         this.questionsNumbers = questionsNumbers;
@@ -116,22 +129,42 @@ public class QuestionList implements Parcelable {
         }
     };
 
+    /**
+     * Get the level of questions list
+     * @return the level of questions list
+     */
     public int getLevel() {
         return level;
     }
 
+    /**
+     * Get the number of questions inside the list
+     * @return the number of questions inside the list
+     */
     public int getQuestionsNumbers() {
         return questionsNumbers;
     }
 
+    /**
+     * Get the position of the question inside the list
+     * @param position the index of the question inside the list
+     * @return the index position of the questions
+     */
     public Question getQuestion(int position) {
         return questionsList.get(position);
     }
 
+    /**
+     * Get the number of right answers.
+     * @return the number of right answers.
+     */
     public int getGoodAnswers() {
         return goodAnswers;
     }
 
+    /**
+     * Increment goodAnswers if user has a good answer at one question.
+     */
     public void addGoodAnswer() {
         this.goodAnswers++;
     }

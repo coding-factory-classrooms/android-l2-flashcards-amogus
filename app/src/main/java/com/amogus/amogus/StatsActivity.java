@@ -16,12 +16,15 @@ public class StatsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
+        // Get QuestionList information from 
         Intent srcIntent = getIntent();
         QuestionList questionList = srcIntent.getParcelableExtra("questions");
         int goodAnswers = questionList.getGoodAnswers();
         int questionsNumbers = questionList.getQuestionsNumbers();
+
         setTitle("Amogus - Résultats");
 
+        // Set the level depending on the int we get
         TextView levelSuccessTextView = findViewById(R.id.levelSuccessTextView);
         switch (questionList.getLevel()) {
             case 0:
@@ -38,13 +41,16 @@ public class StatsActivity extends AppCompatActivity {
                 break;
         }
 
+        // Display good answers number with the number of total questions
         TextView goodAnswersTextView = findViewById(R.id.goodAnswersTextView);
         goodAnswersTextView.setText(goodAnswers + "/" + questionsNumbers);
 
+        // Displays percentage of correct answers
         TextView successTextView = findViewById(R.id.successTextView);
         double percentage = (double) ((goodAnswers * 100) / questionsNumbers);
         successTextView.setText((int) percentage + "%");
 
+        // Button to return to main menu
         Button questionsList = findViewById(R.id.returnButton);
         questionsList.setOnClickListener(new View.OnClickListener() {
             @Override

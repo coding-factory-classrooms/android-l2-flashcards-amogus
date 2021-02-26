@@ -46,7 +46,7 @@ public class QuestionList implements Parcelable {
 
         Random rand = new Random();
 
-        // Copies the full array of questions to generate a random set
+        // Copies the full array of questions
         ArrayList<Question> questionsList;
         switch (level) {
             case 0:
@@ -58,7 +58,7 @@ public class QuestionList implements Parcelable {
             case 2:
                 questionsList = hardQuestions;
                 break;
-            default:
+            default: // If we have a number that is not mapped to a difficulty, we return all difficulties
                 questionsList = easyQuestions;
                 questionsList.addAll(normalQuestions);
                 questionsList.addAll(hardQuestions);
@@ -67,16 +67,13 @@ public class QuestionList implements Parcelable {
         }
         Log.i("QuestionList", String.valueOf(questionsList));
 
-
-
+        // If the user asks for a randomised list, we randomise the copied list
         if (isRandom) {
-            // Removes random element until we g
             while (questionsList.size() > questionsNumbers) {
                 int randomIndex = rand.nextInt(questionsList.size());
                 questionsList.remove(randomIndex);
             }
         }
-
 
         this.questionsList = questionsList;
     }

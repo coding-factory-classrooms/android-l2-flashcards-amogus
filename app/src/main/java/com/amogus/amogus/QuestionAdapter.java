@@ -33,10 +33,14 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Question question = questions.getQuestion(position);
+        // Set question Image and Text
         holder.questionImage.setImageResource(question.getImageId());
         holder.question.setText(question.getQuestion());
-        // Ignore warning
+
+        // Set the answers with a joined array
         holder.answers.setText(String.join(", ", question.getAnswers()));
+
+        // Set the level depending on the int we get
         switch (question.getLevel()) {
             case 0:
                 holder.level.setText("Facile");

@@ -13,9 +13,11 @@ public class ShowPictureActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_picture);
 
+        // Get the image to display as an Intent
         Intent srcIntent = getIntent();
         int imageId = srcIntent.getIntExtra("image",R.drawable.crewmate_red);
 
+        // Display image
         ImageView displayImageView = findViewById(R.id.displayImageView);
         displayImageView.setImageResource(imageId);
     }

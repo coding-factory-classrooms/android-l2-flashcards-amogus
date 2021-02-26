@@ -19,7 +19,7 @@ public class Question implements Parcelable {
     private String[] answers;
 
 
-    /** Creates an employee with the specified name.
+    /** Creates a question with those params :
      * @param level the difficulty of question.
      * @param question the question
      * @param question the question's image

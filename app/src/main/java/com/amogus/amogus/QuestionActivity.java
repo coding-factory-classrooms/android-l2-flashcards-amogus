@@ -27,17 +27,20 @@ public class QuestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
 
+
         Intent srcIntent = getIntent();
         QuestionList questionList = srcIntent.getParcelableExtra("questions");
         int currentQuestionId = srcIntent.getIntExtra("currentQuestion", 0);
-        int questionsNumbers = questionList.getQuestionsNumbers();
         Log.i("QuestionActivity", "Current Question ID : " + currentQuestionId);
+
+        // Set top bar title with current question number (with the total nb of questions)
+        int questionsNumbers = questionList.getQuestionsNumbers();
         setTitle("Amogus - Question " + (currentQuestionId + 1) + " sur " + questionsNumbers);
 
-
+        // Grabs the current Question object to display the different elements
         Question currentQuestion = questionList.getQuestion(currentQuestionId);
 
-        // get correct answer from question
+        // Gets correct answer from question
         String correctAnswer = currentQuestion.getRightAnswer();
 
         // Setting question picture
@@ -48,7 +51,7 @@ public class QuestionActivity extends AppCompatActivity {
         TextView questionTextView = findViewById(R.id.questionTextView);
         questionTextView.setText(currentQuestion.getQuestion());
 
-        // Creating question answers 
+        // Getting question answers
         String[] questionAnswers = currentQuestion.getAnswers();
 
         // Shuffling question answers
@@ -56,10 +59,10 @@ public class QuestionActivity extends AppCompatActivity {
         Collections.shuffle(tempList);
         String[] shuffledQuestionAnswers = tempList.toArray(new String[tempList.size()]);
 
-        // Creation radioButtons for answers
+        // Create radioButtons for answers
         RadioButton button;
         RadioGroup answersRadioGroup = findViewById(R.id.answersRadioGroup);
-        answersRadioGroup.setOrientation(RadioGroup.VERTICAL);//or RadioGroup.VERTICAL
+        answersRadioGroup.setOrientation(RadioGroup.VERTICAL);
         for (String answerText : shuffledQuestionAnswers) {
             button = new RadioButton(this);
             button.setText(answerText);
@@ -70,6 +73,7 @@ public class QuestionActivity extends AppCompatActivity {
         TextView feedbackTextView = findViewById(R.id.feedbackTextView);
         TextView infoTextView = findViewById(R.id.infoTextView);
 
+        // Set listener for bottom Button
         Button actionButton = findViewById(R.id.actionButton);
         actionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,21 +83,19 @@ public class QuestionActivity extends AppCompatActivity {
                 // get current selected option IF SELECTED, ELSE RETURN
                 int radioButtonID = answersRadioGroup.getCheckedRadioButtonId();
 
-                if (actionButton.getText() == "Question suivante") {
+                if (actionButton.getText() == "Question suivante") { // If the question has been answered
                     if (currentQuestionId + 1 == questionList.getQuestionsNumbers()) { // If we're at the last question
                         Intent statsIntent = new Intent(QuestionActivity.this, StatsActivity.class);
                         statsIntent.putExtra("questions", questionList);
                         statsIntent.putExtra("goodAnswers", goodAnswers);
-                        startActivity(statsIntent);
+                        startActivity(statsIntent); // Go to Stats Activity
                         finish();
-                    } else { // Go to next question
-                        Log.i("QuestionActivity", "Good Answers : " + goodAnswers);
-
+                    } else { // If we still have questions
                         Intent listIntent = new Intent(QuestionActivity.this, QuestionActivity.class);
                         listIntent.putExtra("questions", questionList);
                         listIntent.putExtra("currentQuestion", currentQuestionId + 1);
                         listIntent.putExtra("goodAnswers", goodAnswers);
-                        startActivity(listIntent);
+                        startActivity(listIntent); // Go to next question
                         finish();
                     }
 
@@ -102,16 +104,16 @@ public class QuestionActivity extends AppCompatActivity {
                     RadioButton selectedRadioButton = (RadioButton) answersRadioGroup.findViewById(radioButtonID);
                     String selectedAnswer = (String) selectedRadioButton.getText();
 
-                    // lock the radio buttons + user feedback
+                    // Lock the radio buttons + user feedback
                     for (int i = 0; i < answersRadioGroup.getChildCount(); i++) {
                         answersRadioGroup.getChildAt(i).setEnabled(false);
                     }
 
-                    // set user feedback text to visible
+                    // Set user feedback text to visible
                     feedbackTextView.setVisibility(View.VISIBLE);
                     infoTextView.setVisibility(View.VISIBLE);
 
-                    // compare the two strings
+                    // Compare the two strings
                     if (selectedAnswer == correctAnswer) {
                         Log.i("QuestionActivity", selectedAnswer + " == " + correctAnswer + " - good!");
                         feedbackTextView.setText("Bonne réponse ! 👏");
@@ -121,9 +123,10 @@ public class QuestionActivity extends AppCompatActivity {
                         feedbackTextView.setText("Mauvaise réponse... ❌");
                     }
 
+                    // Display correct answer
                     infoTextView.setText("La bonne réponse était \"" + correctAnswer + "\".");
 
-                    // change button action
+                    // Change button action
                     actionButton.setText("Question suivante");
                 }
             }

@@ -14,6 +14,8 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
 
         TextView versionTextView = findViewById(R.id.versionTextView);
+
+        // Getting app version and displaying it in the About activity
         try {
             String versionName = this.getPackageManager().getPackageInfo(this.getPackageName(), 0).versionName;
             versionTextView.setText("v" + versionName);

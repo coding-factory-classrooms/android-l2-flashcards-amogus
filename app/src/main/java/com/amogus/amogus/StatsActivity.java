@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class StatsActivity extends AppCompatActivity {
@@ -42,6 +44,15 @@ public class StatsActivity extends AppCompatActivity {
         TextView successTextView = findViewById(R.id.successTextView);
         double percentage = (double) ((goodAnswers * 100) / questionsNumbers);
         successTextView.setText((int) percentage + "%");
+
+        Button questionsList = findViewById(R.id.returnButton);
+        questionsList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainIntent = new Intent(StatsActivity.this, MainActivity.class);
+                startActivity(mainIntent);
+            }
+        });
 
     }
 }

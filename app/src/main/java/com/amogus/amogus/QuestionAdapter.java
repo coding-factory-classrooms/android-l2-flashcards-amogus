@@ -1,5 +1,6 @@
 package com.amogus.amogus;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 break;
         }
 
-
+        // ONCLICK LISTENER 
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -74,6 +76,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             level = itemView.findViewById(R.id.levelItemTextView);
             question = itemView.findViewById(R.id.questionItemTextView);
             answers = itemView.findViewById(R.id.answersItemTextView);
+            goToQuestionButton = itemView.findViewById(R.id.answersItemTextView);
         }
     }
 }

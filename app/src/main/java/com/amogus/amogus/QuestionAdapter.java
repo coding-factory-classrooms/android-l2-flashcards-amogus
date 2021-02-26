@@ -51,10 +51,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
                 holder.level.setText("Inconnu");
                 break;
         }
-
-        // ONCLICK LISTENER
-        holder.goToQuestionButton
-
     }
 
 
@@ -69,7 +65,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
         final TextView level;
         final TextView question;
         final TextView answers;
-        final Button goToQuestionButton;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,7 +74,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             level = itemView.findViewById(R.id.levelItemTextView);
             question = itemView.findViewById(R.id.questionItemTextView);
             answers = itemView.findViewById(R.id.answersItemTextView);
-            goToQuestionButton = itemView.findViewById(R.id.answersItemTextView);
         }
     }
 }
